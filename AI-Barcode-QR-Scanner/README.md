@@ -42,7 +42,7 @@ A scanned URL is checked for HTTPS, URL shorteners, suspicious keywords, and unu
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
+git clone https://github.com/ayushkadas08-droid/AI-Barcode-QR-Scanner.git
 cd YOUR_REPOSITORY_NAME
 ```
 
