@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">Webcam Scanner</div>
+        <nav class="nav">
+            <a class="button secondary" href="{{ url_for('home') }}">New Scan</a>
+            <a class="button secondary" href="{{ url_for('history') }}">History</a>
+        </nav>
+    </header>
+
+    <section class="panel">
+        <h1>Webcam Scanner Started</h1>
+        <p>
+            A separate camera window should open on this computer. Use the on-screen controls
+            in that window to save captures, open detected links, or quit.
+        </p>
+    </section>
+</main>
+</body>
+</html>

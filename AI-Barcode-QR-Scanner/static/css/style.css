@@ -1,0 +1,255 @@
+:root {
+    color-scheme: dark;
+    --bg: #111827;
+    --panel: #1f2937;
+    --panel-soft: #243244;
+    --border: rgba(255,255,255,0.16);
+    --text: #f9fafb;
+    --muted: #cbd5e1;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --cyan: #00d4ff;
+    --green: #8fd14f;
+    --yellow: #ffd166;
+    --red: #ff5c7a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+a {
+    color: #8ec5ff;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.page {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.brand {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.nav {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 24px;
+    align-items: start;
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 1.1;
+    margin: 0 0 12px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: white;
+    font-size: 16px;
+}
+
+button:hover,
+.button:hover {
+    background-color: var(--primary-hover);
+}
+
+.button.secondary {
+    background: #374151;
+}
+
+.button.secondary:hover {
+    background: #4b5563;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px dashed rgba(255,255,255,0.35);
+    border-radius: 8px;
+    color: var(--muted);
+    background: #172033;
+}
+
+.preview-image {
+    width: 350px;
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 0 0 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border-bottom: 1px solid var(--border);
+    padding: 14px;
+    vertical-align: top;
+    text-align: left;
+}
+
+th {
+    background: #263654;
+}
+
+.data-text {
+    overflow-wrap: anywhere;
+}
+
+.agent-box,
+.safety-box,
+.ai-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.agent-box {
+    background: #1e2b38;
+    border-left: 5px solid #8ec5ff;
+}
+
+.safety-box {
+    background: #202842;
+    border-left: 5px solid var(--green);
+}
+
+.safety-box.caution {
+    border-left-color: var(--yellow);
+}
+
+.safety-box.high-risk {
+    border-left-color: var(--red);
+}
+
+.ai-box {
+    background: #2c3654;
+    border-left: 5px solid var(--cyan);
+}
+
+.ai-box h3 {
+    margin-top: 0;
+    color: var(--cyan);
+}
+
+.agent-label,
+.safety-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+ul {
+    margin-bottom: 0;
+    padding-left: 22px;
+}
+
+.history-list {
+    display: grid;
+    gap: 12px;
+}
+
+.history-item {
+    background: var(--panel-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.history-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 760px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}

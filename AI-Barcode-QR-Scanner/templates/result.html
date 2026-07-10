@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">Scan Complete</div>
+        <nav class="nav">
+            <a class="button secondary" href="{{ url_for('home') }}">New Scan</a>
+            <a class="button secondary" href="{{ url_for('history') }}">History</a>
+        </nav>
+    </header>
+
+    <section class="panel">
+        <img class="preview-image" src="{{ url_for('static', filename='uploads/' + image) }}" alt="Uploaded scan image">
+
+        <h1>Detected Codes</h1>
+
+        {% if results %}
+            <p><strong>{{ results|length }}</strong> code(s) detected.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Decoded Data</th>
+                    </tr>
+
+                    {% for result in results %}
+                    <tr>
+                        <td>{{ result.type }}</td>
+                        <td>
+                            <div class="data-text">
+                                {% if result.data.startswith('http') %}
+                                    <a href="{{ result.data }}" target="_blank" rel="noopener noreferrer">
+                                        {{ result.data }}
+                                    </a>
+                                {% else %}
+                                    {{ result.data }}
+                                {% endif %}
+                            </div>
+
+                            {% if result.agent %}
+                            <div class="agent-box">
+                                <div class="agent-label">
+                                    Agent Decision: {{ result.agent.category }}
+                                </div>
+                                <div><strong>Action:</strong> {{ result.agent.action }}</div>
+                                <div><strong>Confidence:</strong> {{ result.agent.confidence }}</div>
+                                <div><strong>Reason:</strong> {{ result.agent.reason }}</div>
+                            </div>
+                            {% endif %}
+
+                            {% if result.safety %}
+                            <div class="safety-box {{ result.safety.level|lower|replace(' ', '-') }}">
+                                <div class="safety-label">
+                                    Safety: {{ result.safety.level }} ({{ result.safety.score }}/100)
+                                </div>
+                                <div>{{ result.safety.summary }}</div>
+
+                                {% if result.safety.warnings %}
+                                    <ul>
+                                        {% for warning in result.safety.warnings %}
+                                            <li>{{ warning }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+
+                            {% if result.ai %}
+                            <div class="ai-box">
+                                <h3>AI Explanation</h3>
+                                <p>{{ result.ai }}</p>
+                            </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% else %}
+            <h2>No QR Code or Barcode Detected.</h2>
+            <p>Try uploading a clearer, brighter image with the full code visible.</p>
+        {% endif %}
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">Scan History</div>
+        <nav class="nav">
+            <a class="button secondary" href="{{ url_for('home') }}">New Scan</a>
+            <a class="button secondary" href="{{ url_for('webcam') }}">Webcam</a>
+        </nav>
+    </header>
+
+    <section class="panel">
+        <h1>Recent Scans</h1>
+
+        {% if scans %}
+            <div class="history-list">
+                {% for scan in scans %}
+                <article class="history-item">
+                    <div class="history-meta">
+                        <span>{{ scan.created_at }}</span>
+                        <span>{{ scan.code_type }}</span>
+                        <span>{{ scan.category }}</span>
+                        <span>Safety: {{ scan.safety_level }} ({{ scan.safety_score }}/100)</span>
+                    </div>
+                    <div class="data-text">
+                        {% if scan.decoded_data.startswith('http') %}
+                            <a href="{{ scan.decoded_data }}" target="_blank" rel="noopener noreferrer">
+                                {{ scan.decoded_data }}
+                            </a>
+                        {% else %}
+                            {{ scan.decoded_data }}
+                        {% endif %}
+                    </div>
+                    <p><strong>Recommended action:</strong> {{ scan.action }}</p>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No scans have been saved yet.</p>
+        {% endif %}
+    </section>
+</main>
+</body>
+</html>

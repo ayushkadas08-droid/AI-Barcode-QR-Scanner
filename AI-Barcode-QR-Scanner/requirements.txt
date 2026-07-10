@@ -1,0 +1,4 @@
+Flask
+opencv-python
+zxing-cpp
+google-generativeai
